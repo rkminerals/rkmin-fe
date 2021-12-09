@@ -70,17 +70,17 @@ function Reports(props) {
                          <Button style={{marginRight: '10px'}} onClick={()=>{setInfoType(2); setShowMineralInfo(true);}}>Powder Info.</Button>
                          <br/> 
                          <br/> 
-                    <a style={{marginRight: '10px'}} href="http://localhost:3001/api/incomingEntryModel/allInReport">
+                    <a style={{marginRight: '10px'}} href={`${API_BASE}/api/incomingEntryModel/allInReport`}>
                         <Button>Incoming Entries <DownloadOutlined style={{color:'#1890ff'}} size="large"/></Button>
                     </a>
                     <br/>
                     <br/>
-                    <a style={{marginRight: '10px'}} href="http://localhost:3001/api/grindingEntryModel/allInReport">
+                    <a style={{marginRight: '10px'}} href={`${API_BASE}/api/grindingEntryModel/allInReport`}>
                         <Button>Grinding Entries <DownloadOutlined style={{color:'#1890ff'}}/></Button>
                     </a>
                     <br/>
                     <br/>
-                    <a style={{marginRight: '10px'}} href="http://localhost:3001/api/powderDispatchingEntryModel/allInReport">
+                    <a style={{marginRight: '10px'}} href={`${API_BASE}/api/powderDispatchingEntryModel/allInReport`}>
                         <Button>Powder Dispatching Entries <DownloadOutlined style={{color:'#1890ff'}}/></Button>
                     </a> 
             </Col>

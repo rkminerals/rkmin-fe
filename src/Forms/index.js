@@ -18,10 +18,10 @@ function Forms(props) {
     const [apploading, setAppLoading] = useState(true);
 
     useEffect(()=>{
-
       apiCall();
-
-        function apiCall() {axios.get(API_BASE + "/api/mineralModel").then((res) => {
+      let componentMounted = true;
+        function apiCall() {
+          axios.get(API_BASE + "/api/mineralModel").then((res) => {
             console.log(res);
 
             // const link = document.createElement('a');
@@ -30,11 +30,13 @@ function Forms(props) {
             // link.click();
             // document.body.removeChild(link);
 
-            setMinerals(res.data.content);
-            setAppLoading(false);
+            if(componentMounted){
+              setMinerals(res.data.content);
+              setAppLoading(false);
+            }
+            return () => { componentMounted = false }
         }).catch(()=>{
-                alert('something went wrong in fetching the data. Please refresh!');
-
+              alert('something went wrong in fetching the data. Please refresh!');
         })}
     },[])
 

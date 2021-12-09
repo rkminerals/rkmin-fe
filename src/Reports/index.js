@@ -28,10 +28,14 @@ function Reports(props) {
    
 
     useEffect(()=>{
+        let componentMounted = true;
         axios.get(API_BASE + "/api/mineralModel").then((res) => {
             console.log(res.data);
-            setMinerals(res.data.content);
-            setDataLoading(false);
+            if(componentMounted){
+                setMinerals(res.data.content);
+                setDataLoading(false);
+            }
+            return () => { componentMounted=true }
         }).catch(()=>{
             window.location.reload();
             failureToast('something went wrong in fetching the app data');
@@ -51,9 +55,6 @@ function Reports(props) {
         setShowMineralInfo(true)
     }
     };
-
-   
-    
 
     return (
         dataLoading == true ? <span><h2><br/></h2><Spin style={{paddingTop:'40px'}} size="large" /><br/><br/>loading</span> :

@@ -46,6 +46,8 @@ function GrindingEntryForm(props) {
         const [mineralName, setMineralName] = useState(null);
         const [quantity, setQuantity] = useState(null);
         const [gradeName, setGradeName] = useState(null);
+
+        const [constituentType, setConstituentType] = useState(null);
         const [composition, setComposition] = useState([]);
 
         //for composition
@@ -208,6 +210,17 @@ function GrindingEntryForm(props) {
             }
           }} />
         </Form.Item>
+
+        <Form.Item label="constituentType" style={{textAlign:"left"}}>
+        <Radio.Group onChange={(value)=>{
+          setConstituentType(value.target.value);
+          console.log(constituentType);
+        }}>
+          <Radio value={'Powder'}>Powder</Radio>
+          <Radio value={'Rock'}>Rock</Radio>
+        </Radio.Group>
+        </Form.Item>
+
         <Form.Item label="Composition" style={{textAlign:"left"}}>
           <sub>Part Ratio</sub><br/>
           <InputNumber value={partRatio} onChange={(value) => {
@@ -228,23 +241,32 @@ function GrindingEntryForm(props) {
                 ""
               } 
           </Select>
-          <sub>Rock type</sub>
+          <sub>{constituentType === 'Powder' ? 'Powder type' : 'Rock Type'}</sub>
 
           <Select
-        value={rockType}
-        onChange={(value) => {
+          value={rockType}
+          onChange={(value) => {
             setRockType(value);
         }}
         >
               { 
-                        mineralForComponent != null ? mineralForComponent.rockTypes.map((rockType) => {
-                            if(rockType.supplier == supplier){
+                        mineralForComponent != null && constituentType === 'Rock' ? mineralForComponent.rockTypes.map((rockType) => {
+                            if(rockType.supplier === supplier){
                             return <Select.Option value={rockType.rockType}>{rockType.rockType}</Select.Option>
                             }
                           })
                           :
                           ""
               } 
+              { 
+                        mineralForComponent != null && constituentType === 'Powder' ? mineralForComponent.powderGrades.map((grade) => {
+                            if(grade.supplier === supplier){
+                            return <Select.Option value={grade.gradeName}>{grade.gradeName}</Select.Option>
+                            }
+                          })
+                          :
+                          ""
+              }
           </Select>
           <Button
           style={{marginTop:'5px'}}
@@ -252,7 +274,20 @@ function GrindingEntryForm(props) {
             if(partRatio == null || supplier == null || rockType == null){
               failureToast("Empty fields in 'Composition' are not allowed");
             } else {
-              const compositionPart = {inputPartRatio: partRatio, supplier: supplier, rockType: rockType};
+              const compositionPart = constituentType === 'Rock' ? 
+              {
+                inputPartRatio: partRatio, 
+                supplier: supplier, 
+                rockType: rockType, 
+                constituentType: constituentType} 
+              :
+              {
+                inputPartRatio: partRatio, 
+                supplier: supplier, 
+                grade: rockType, 
+                constituentType: constituentType
+              } 
+              ;
               composition.push(compositionPart);
               setPartRatio(null);
               setSupplier(null);

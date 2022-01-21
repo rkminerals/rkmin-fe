@@ -36,6 +36,7 @@ function IncomingEntryForm(props) {
         const [truckNumber, setTruckNumber] = useState(null);
         const [quantity, setQuantity] = useState(null);
         const [remarks, setRemarks] = useState(null);
+        const [incomingType, setIncomingType] = useState(null);
         const [rockType, setRockType] = useState(null);
 
         // affirmation after saving into the DB
@@ -54,7 +55,8 @@ function IncomingEntryForm(props) {
             {
                     "incomingDate": date,  
                     "mineralId": mineralId,  
-                    "mineralName":mineralName,    
+                    "mineralName":mineralName, 
+                    "incomingType": incomingType,   
                     "supplier": supplier,  
                     "rockType": rockType,  
                     "typeQuantity": quantity,
@@ -63,7 +65,7 @@ function IncomingEntryForm(props) {
             }
             ).then(res => {
                 console.log(res.data.message);
-                if(res.data.message == 'success'){
+                if(res.data.message === 'success'){
                 axios.get(API_BASE + '/api/incomingEntryModel/getLastInserted').then((res) => {
                     setDataAffirmationFromDB(res.data.content);
                 }).then(()=>{
@@ -149,7 +151,19 @@ function IncomingEntryForm(props) {
           </Select>
         </Form.Item>
 
-        <Form.Item label="Rock type">
+        <Form.Item label="Incoming type">
+        <Select
+        value={incomingType}
+        onChange={(value) => {
+            setIncomingType(value);
+        }}
+        >  
+            <Select.Option value={"Rock"}>Rock</Select.Option>
+            <Select.Option value={"Powder"}>Powder</Select.Option>
+        </Select>
+        </Form.Item>
+
+        <Form.Item label={incomingType === 'Powder' ? 'Powder type' : 'Rock type'}>
         <Select
         value={rockType}
         onChange={(value) => {
@@ -157,9 +171,18 @@ function IncomingEntryForm(props) {
         }}
         >
               { 
-                        mineralForComponent != null ? mineralForComponent.rockTypes.map((rockType) => {
-                            if(rockType.supplier == supplier){
+                        mineralForComponent != null && incomingType === 'Rock' ? mineralForComponent.rockTypes.map((rockType) => {
+                            if(rockType.supplier === supplier){
                             return <Select.Option value={rockType.rockType}>{rockType.rockType}</Select.Option>
+                            }
+                          })
+                          :
+                          ""
+              } 
+              { 
+                        mineralForComponent != null  && incomingType === 'Powder'  ? mineralForComponent.powderGrades.map((type) => {
+                            if(type.supplier === supplier){
+                            return <Select.Option value={type.gradeName}>{type.gradeName}</Select.Option>
                             }
                           })
                           :
@@ -169,10 +192,7 @@ function IncomingEntryForm(props) {
         </Form.Item> 
         <Form.Item label="Quantity" style={{textAlign:"left"}}>
           <InputNumber value={quantity} onChange={(value) => {
-              if(value > 0){ setQuantity(value) }
-              else {  
-                failureToast("'Quantity' must be a positive number");
-            }
+             setQuantity(value)
           }} />
         </Form.Item>
 

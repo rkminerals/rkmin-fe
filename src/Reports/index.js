@@ -110,7 +110,7 @@ function Reports(props) {
                                    {
                                        mineral.powderGrades.length != 0 ? mineral.powderGrades.map((grade)=>{
 
-                                            return  <tr><td style={{border:'2px solid silver', padding:'5px 10px'}}>{grade.gradeName} </td> <td style={{border:'2px solid silver', padding:'5px 10px'}}>{grade.gradeBalance} {mineral.measuringUnit}</td></tr>
+                                            return  <tr><td style={{border:'2px solid silver', padding:'5px 10px'}}>{grade.gradeName}, {grade.supplier} </td> <td style={{border:'2px solid silver', padding:'5px 10px'}}>{grade.gradeBalance} {mineral.measuringUnit}</td></tr>
                                                 
                                        }) : ""
                                    }

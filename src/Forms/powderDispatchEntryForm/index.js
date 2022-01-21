@@ -38,6 +38,7 @@ function PowderDispatchingEntryForm(props) {
         const [mineralName, setMineralName] = useState(null);
         const [quantity, setQuantity] = useState(null);
         const [gradeName, setGradeName] = useState(null);
+        const [supplier, setSupplier] = useState(null);
         const [remarks, setRemarks] = useState(null);
  
 
@@ -58,6 +59,7 @@ function PowderDispatchingEntryForm(props) {
                 "dispatchingDate": date,
                 "mineralId": mineralId,   
                 "mineralName": mineralName,
+                "supplier": supplier,
                 "gradeName": gradeName,
                 "quantityDispatched": quantity,
                 "remarks": remarks
@@ -70,7 +72,6 @@ function PowderDispatchingEntryForm(props) {
                 }).then(()=>{
                     setShowAffermation(true);
                     setSubmitFormLoader(false);
-
                 })
               }
             }).catch(err => {
@@ -79,6 +80,8 @@ function PowderDispatchingEntryForm(props) {
             })
         }
         }
+
+        let gradeNameArray = [];
 
     return (
         <>
@@ -142,19 +145,39 @@ function PowderDispatchingEntryForm(props) {
         >
               { 
                 mineralForComponent != null ? mineralForComponent.powderGrades.map((grade) => {
-                return <Select.Option value={grade.gradeName}>{grade.gradeName}</Select.Option>
+                  if(!gradeNameArray.includes(grade.gradeName)){
+                    gradeNameArray.push(grade.gradeName);
+                    return <Select.Option value={grade.gradeName}>{grade.gradeName}</Select.Option>
+                  }
                 }) 
                 :
                 ""
               } 
           </Select>
         </Form.Item>
+
+        <Form.Item label="Supplier">
+        <Select
+        value={supplier}
+        onChange={(value) => {
+            setSupplier(value);
+        }}
+        >
+              { 
+                mineralForComponent != null ? mineralForComponent.powderGrades.map((grade) => {
+                  if(grade.gradeName === gradeName){
+                    return <Select.Option value={grade.supplier}>{grade.supplier}</Select.Option>
+                  }
+                }) 
+                :
+                ""
+              } 
+          </Select>
+        </Form.Item>
+
         <Form.Item label="Quantity Dispatched" style={{textAlign:"left"}}>
           <InputNumber value={quantity} onChange={(value) => {
-              if(value > 0){ setQuantity(value) }
-              else {  
-                failureToast("'Quantity' must be a positive number");
-            }
+            setQuantity(value) 
           }} />
         </Form.Item> 
         

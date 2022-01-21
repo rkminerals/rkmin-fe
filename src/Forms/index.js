@@ -29,12 +29,11 @@ function Forms(props) {
             // document.body.appendChild(link);
             // link.click();
             // document.body.removeChild(link);
-
-            if(componentMounted){
+ 
               setMinerals(res.data.content);
               setAppLoading(false);
-            }
-            return () => { componentMounted = false }
+            
+            // return () => { componentMounted = false }
         }).catch(()=>{
               alert('something went wrong in fetching the data. Please refresh!');
         })}

@@ -6,6 +6,8 @@ import IncomingEntryForm from './incomingEntryForm';
 import GrindingEntryForm from './grindingEntryForm';
 import PowderDispatchingEntryForm from './powderDispatchEntryForm';
 
+import {LineChartOutlined, FormOutlined} from '@ant-design/icons' 
+
 const { TabPane } = Tabs;
 
 function Forms(props) {
@@ -14,7 +16,7 @@ function Forms(props) {
     const [apploading, setAppLoading] = useState(true);
 
     useEffect(()=>{
-      apiCall();
+      apiCall(); 
         function apiCall() {
           axios.get(API_BASE + "/api/mineralModel", {
             headers : {

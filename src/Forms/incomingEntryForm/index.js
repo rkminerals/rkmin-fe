@@ -62,11 +62,16 @@ function IncomingEntryForm(props) {
                     "typeQuantity": quantity,
                     "truckNumber": truckNumber,
                     "remarks": remarks
-            }
+            },
+            {headers : {
+              'Authorization': `${sessionStorage.getItem('rkminToken')}`
+            }}
             ).then(res => {
                 console.log(res.data.message);
                 if(res.data.message === 'success'){
-                axios.get(API_BASE + '/api/incomingEntryModel/getLastInserted').then((res) => {
+                axios.get(API_BASE + '/api/incomingEntryModel/getLastInserted', {headers : {
+                  'Authorization': `${sessionStorage.getItem('rkminToken')}`
+                }}).then((res) => {
                     setDataAffirmationFromDB(res.data.content);
                 }).then(()=>{
                     setShowAffermation(true);
@@ -233,7 +238,9 @@ function IncomingEntryForm(props) {
             setDeleteByIdLoader(true);
             console.log(dataAffirmationFromDB);
               //delete the record from database and resubmit
-              axios.post(API_BASE + "/api/incomingEntryModel/deleteById/" + dataAffirmationFromDB[0]._id, dataAffirmationFromDB[0]).then((res)=>{
+              axios.post(API_BASE + "/api/incomingEntryModel/deleteById/" + dataAffirmationFromDB[0]._id, dataAffirmationFromDB[0], {headers : {
+                'Authorization': `${sessionStorage.getItem('rkminToken')}`
+              }}).then((res)=>{
                   // failureToast(res.data.message + "deleted");
                   // pdfEntryErrorReport.add(JSON.stringify(dataAffirmationFromDB));
                   // pdfEntryErrorReport.create().download();

@@ -6,10 +6,6 @@ import IncomingEntryForm from './incomingEntryForm';
 import GrindingEntryForm from './grindingEntryForm';
 import PowderDispatchingEntryForm from './powderDispatchEntryForm';
 
-import {LineChartOutlined, FormOutlined} from '@ant-design/icons'
-import { failureToast } from '../App';
-import { Link } from 'react-router-dom';
-
 const { TabPane } = Tabs;
 
 function Forms(props) {
@@ -19,9 +15,12 @@ function Forms(props) {
 
     useEffect(()=>{
       apiCall();
-      let componentMounted = true;
         function apiCall() {
-          axios.get(API_BASE + "/api/mineralModel").then((res) => {
+          axios.get(API_BASE + "/api/mineralModel", {
+            headers : {
+              'Authorization': `${sessionStorage.getItem('rkminToken')}`
+            }
+          }).then((res) => {
             console.log(res);
 
             // const link = document.createElement('a');

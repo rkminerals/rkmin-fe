@@ -29,7 +29,11 @@ function Reports(props) {
 
     useEffect(()=>{
         let componentMounted = true;
-        axios.get(API_BASE + "/api/mineralModel").then((res) => {
+        axios.get(API_BASE + "/api/mineralModel", {
+            headers : {
+              'Authorization': `${sessionStorage.getItem('rkminToken')}`
+            }
+          }).then((res) => {
             console.log(res.data);
             if(componentMounted){
                 setMinerals(res.data.content);
@@ -57,12 +61,9 @@ function Reports(props) {
     };
 
     return (
-        dataLoading == true ? <span><h2><br/></h2><Spin style={{paddingTop:'40px'}} size="large" /><br/><br/>loading</span> :
+        dataLoading == true ? <span><h2><br/></h2><Spin style={{paddingTop:'40px'}} size="large" /><br/><br/>creating reports ...</span> :
         <Row>
-            <Col span={2} style={{paddingTop: '10px'}}>
-                <Link to="/"><Button type="ghost" size="large" style={{border: '0px'}}> <RollbackOutlined /> Back</Button></Link>
-            </Col>
-            <Col span={22} align="left" style={{paddingTop: '20px', paddingLeft: '50px'}}> 
+            <Col span={24} align="left" style={{paddingTop: '20px', paddingLeft: '50px'}}> 
                 <h3 style={{paddingLeft: '5px'}}>Reports</h3>
                 <br/> 
                     <Button style={{marginRight: '10px'}} onClick={()=>{setInfoType(1); calMineralInfo();}}>Minerals Info.</Button> 

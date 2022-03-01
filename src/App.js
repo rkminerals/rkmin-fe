@@ -57,7 +57,7 @@ function App() {
                               size="large">R. K. MINERALS <sub> Stock Register</sub></Button>
                           </Col>
                           <Col span={12} style={{textAlign: "right"}}>
-                              <Link to="/reports"><Button type="ghost" style={{color: 'white',  border: '0px'}} size="large"> <LineChartOutlined /> Reports </Button></Link>
+                              {/* <Link to="/reports"><Button type="ghost" style={{color: 'white',  border: '0px'}} size="large"> <LineChartOutlined /> Reports </Button></Link> */}
                           </Col>
                       </Row>
                   </div> 
@@ -65,6 +65,8 @@ function App() {
       </Row>
   
       <Forms/>
+      <br/><br/><br/><br/>
+      <Reports/>
             </div> :
             <div>
               <Row style={{backgroundColor: '#1890ff', padding: '5px 20px', margin: '0px -30px'}}>
@@ -114,29 +116,6 @@ function App() {
               </Row>
             </div>
           }
-          
-          
-        <div>
-          <Row>
-      <Col span={24}>
-      <div>
-                    <Row style={{backgroundColor: '#1890ff', padding: '5px 20px', margin: '0px -30px'}}>
-                        <Col span={12} style={{textAlign: "left"}}>
-                            <Button
-                             onMouseOver={(e) => { 
-                              e.target.style.cursor = "none"; 
-                            }}
-                             type="text" style={{color: 'white', backgroundColor: 'transparent'}} size="large">R. K. MINERALS</Button>
-                        </Col>
-                        <Col span={12} style={{textAlign: "right"}}>
-                               </Col>
-                    </Row>
-                </div> 
-      </Col>
-    </Row>
-
-    <Reports/>
-          </div>
       <ToastContainer
       position="bottom-right" />
     </div>

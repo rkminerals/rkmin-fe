@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.1256f92f.chunk.css",
-    "main.js": "/static/js/main.96a04cf9.chunk.js",
-    "main.js.map": "/static/js/main.96a04cf9.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.73b980ca.js",
-    "runtime-main.js.map": "/static/js/runtime-main.73b980ca.js.map",
-    "static/css/2.f719b827.chunk.css": "/static/css/2.f719b827.chunk.css",
-    "static/js/2.9c694403.chunk.js": "/static/js/2.9c694403.chunk.js",
-    "static/js/2.9c694403.chunk.js.map": "/static/js/2.9c694403.chunk.js.map",
-    "static/js/3.c450fb84.chunk.js": "/static/js/3.c450fb84.chunk.js",
-    "static/js/3.c450fb84.chunk.js.map": "/static/js/3.c450fb84.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/2.f719b827.chunk.css.map": "/static/css/2.f719b827.chunk.css.map",
-    "static/css/main.1256f92f.chunk.css.map": "/static/css/main.1256f92f.chunk.css.map",
-    "static/js/2.9c694403.chunk.js.LICENSE.txt": "/static/js/2.9c694403.chunk.js.LICENSE.txt",
-    "static/media/logo.6ce24c58.svg": "/static/media/logo.6ce24c58.svg"
+    "main.css": "/rkmin-fe/static/css/main.1256f92f.chunk.css",
+    "main.js": "/rkmin-fe/static/js/main.96a04cf9.chunk.js",
+    "main.js.map": "/rkmin-fe/static/js/main.96a04cf9.chunk.js.map",
+    "runtime-main.js": "/rkmin-fe/static/js/runtime-main.e9180ab1.js",
+    "runtime-main.js.map": "/rkmin-fe/static/js/runtime-main.e9180ab1.js.map",
+    "static/css/2.f719b827.chunk.css": "/rkmin-fe/static/css/2.f719b827.chunk.css",
+    "static/js/2.a2d86eac.chunk.js": "/rkmin-fe/static/js/2.a2d86eac.chunk.js",
+    "static/js/2.a2d86eac.chunk.js.map": "/rkmin-fe/static/js/2.a2d86eac.chunk.js.map",
+    "static/js/3.c450fb84.chunk.js": "/rkmin-fe/static/js/3.c450fb84.chunk.js",
+    "static/js/3.c450fb84.chunk.js.map": "/rkmin-fe/static/js/3.c450fb84.chunk.js.map",
+    "index.html": "/rkmin-fe/index.html",
+    "static/css/2.f719b827.chunk.css.map": "/rkmin-fe/static/css/2.f719b827.chunk.css.map",
+    "static/css/main.1256f92f.chunk.css.map": "/rkmin-fe/static/css/main.1256f92f.chunk.css.map",
+    "static/js/2.a2d86eac.chunk.js.LICENSE.txt": "/rkmin-fe/static/js/2.a2d86eac.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/rkmin-fe/static/media/logo.6ce24c58.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.73b980ca.js",
+    "static/js/runtime-main.e9180ab1.js",
     "static/css/2.f719b827.chunk.css",
-    "static/js/2.9c694403.chunk.js",
+    "static/js/2.a2d86eac.chunk.js",
     "static/css/main.1256f92f.chunk.css",
     "static/js/main.96a04cf9.chunk.js"
   ]

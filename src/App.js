@@ -43,10 +43,6 @@ function App() {
  
   return (
     <div className="App"> 
-    <BrowserRouter>
-     
-      <Switch>
-        <Route exact path="/">
           {
             sessionStorage.getItem('rkminToken') != null ? <div>
             <Row>
@@ -120,8 +116,6 @@ function App() {
           }
           
           
-        </Route>
-        <Route exact path="/reports">
         <div>
           <Row>
       <Col span={24}>
@@ -143,9 +137,6 @@ function App() {
 
     <Reports/>
           </div>
-        </Route>
-      </Switch>
-    </BrowserRouter> 
       <ToastContainer
       position="bottom-right" />
     </div>

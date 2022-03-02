@@ -86,11 +86,13 @@ function Forms(props) {
               <Col span={24}>
                 <Tabs
                 style={{paddingTop:''}}
-                defaultActiveKey="1" tabPosition={"top"} size="default" onChange={()=>{}}>
+                defaultActiveKey="1" tabPosition={"top"} size="default" onChange={(e)=>{if(e === "🏠 Home-key") {
+                  window.location.reload();
+                }}}>
                 {
                         topTabs.map((tab) => {
                             return <TabPane tab={tab.title} key={tab.title + "-key"}>
-                            {tab.content}
+                              <span>{tab.content}</span>
                             </TabPane>
                         })
                     }

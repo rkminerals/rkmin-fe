@@ -13,11 +13,9 @@ function Reports(props) {
     const [minerals, setMinerals] = useState([]);
     const [dataLoading, setDataLoading] = useState(true);
 
-    const [mineralStock, setMineralStock] = useState([]);
-    const [powderStock, setPowderStock] = useState({});
+    const [mineralStock, setMineralStock] = useState([]); 
     const [infoType, setInfoType] = useState(null);
-    const [showMineralInfo, setShowMineralInfo] = useState(false);
-    const [totalPowderBalance, setTotalPowder] = useState(false);
+    const [showMineralInfo, setShowMineralInfo] = useState(false); 
 
     const modalHeaders = [
         "",
@@ -60,11 +58,13 @@ function Reports(props) {
     }
     };
 
+    
+
     return (
         dataLoading == true ? <span><h2><br/></h2><Spin style={{paddingTop:'40px'}} size="large" /><br/><br/>creating reports ...</span> :
         <Row>
             <Col span={24} align="left" style={{paddingTop: '20px', paddingLeft: '50px'}}> 
-                <h3 style={{paddingLeft: '5px'}}>Reports</h3>
+                <h3 style={{paddingLeft: '5px'}}>Reports  </h3>
                 <br/> 
                     <Button style={{marginRight: '10px'}} onClick={()=>{setInfoType(1); calMineralInfo();}}>Minerals Info.</Button> 
                     <br/>
@@ -72,17 +72,30 @@ function Reports(props) {
                          <Button style={{marginRight: '10px'}} onClick={()=>{setInfoType(2); setShowMineralInfo(true);}}>Powder Info.</Button>
                          <br/> 
                          <br/> 
-                    <a style={{marginRight: '10px'}} href={`${API_BASE}/api/incomingEntryModel/allInReport`}>
+
+                    <Button id="downloadEntriesButton" onClick={()=>{
+                        let password = prompt('Password is required to proceed');
+                        if(password === 'admin@321') {
+                            document.getElementById('iE').style.display = 'inline-block';
+                            document.getElementById('gE').style.display = 'inline-block';
+                            document.getElementById('dE').style.display = 'inline-block';
+                            document.getElementById('downloadEntriesButton').style.display = 'none';
+                        } else {
+                            alert('Incorrect password');
+                        }
+                    }}>Download Entries</Button>
+                    
+                    <a id="iE" style={{marginRight: '10px', display: 'none'}} href={`${API_BASE}/api/incomingEntryModel/allInReport`}>
                         <Button>Incoming Entries <DownloadOutlined style={{color:'#1890ff'}} size="large"/></Button>
                     </a>
                     <br/>
                     <br/>
-                    <a style={{marginRight: '10px'}} href={`${API_BASE}/api/grindingEntryModel/allInReport`}>
+                    <a id="gE" style={{marginRight: '10px', display: 'none'}} href={`${API_BASE}/api/grindingEntryModel/allInReport`}>
                         <Button>Grinding Entries <DownloadOutlined style={{color:'#1890ff'}}/></Button>
                     </a>
                     <br/>
                     <br/>
-                    <a style={{marginRight: '10px'}} href={`${API_BASE}/api/powderDispatchingEntryModel/allInReport`}>
+                    <a id="dE" style={{marginRight: '10px', display: 'none'}} href={`${API_BASE}/api/powderDispatchingEntryModel/allInReport`}>
                         <Button>Powder Dispatching Entries <DownloadOutlined style={{color:'#1890ff'}}/></Button>
                     </a> 
             </Col>
@@ -95,18 +108,24 @@ function Reports(props) {
             </Button>, 
           ]}  onCancel={() => {setShowMineralInfo(false);}}> 
           <div style={{height:'40vh', overflowY:'scroll'}}>
-             {infoType == 1 ? <table>
-               <tr><td style={{border:'0px solid black', padding:'5px'}}><b> Mineral </b></td> <td style={{border:'0px solid black', padding:'5px'}}><b>Balance</b></td></tr>
+             {infoType == 1 ? <div>
                             {
-                               mineralStock.length != 0 ? mineralStock.map((mineral) => {
-                               return <tr><td style={{border:'2px solid silver', padding:'5px 10px'}}>{mineral.mineralName} </td> <td style={{border:'2px solid silver', padding:'5px 10px'}}>{mineral.mineralBalance} {mineral.measuringUnit}</td></tr>
-                               }) : ""
+                               minerals.length != 0 ? minerals.map((mineral) => {
+                                   return <table style={{marginTop:'20px'}}><h4>{ mineral.mineralName }</h4>
+                                   {
+                                       mineral.rockTypes.length != 0 ? mineral.rockTypes.map((type)=>{
+
+                                            return  <tr><td style={{border:'2px solid silver', padding:'5px 10px'}}>{type.rockType}, {type.supplier} </td> <td style={{border:'2px solid silver', padding:'5px 10px'}}>{type.typeBalance} {mineral.measuringUnit}</td></tr>
+                                                
+                                       }) : ""
+                                   }
+                               
+                               </table>}) : ""
                             }
-            </table> : ""}
+            </div>  : ""}
             {infoType == 2 ?  <div>
                             {
                                minerals.length != 0 ? minerals.map((mineral) => {
-                                   var totalPowder
                                    return <table style={{marginTop:'20px'}}><h4>{ mineral.mineralName }</h4>
                                    {
                                        mineral.powderGrades.length != 0 ? mineral.powderGrades.map((grade)=>{

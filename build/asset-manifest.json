@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/rkmin-fe/static/css/main.1256f92f.chunk.css",
-    "main.js": "/rkmin-fe/static/js/main.98964328.chunk.js",
-    "main.js.map": "/rkmin-fe/static/js/main.98964328.chunk.js.map",
+    "main.js": "/rkmin-fe/static/js/main.f51261cb.chunk.js",
+    "main.js.map": "/rkmin-fe/static/js/main.f51261cb.chunk.js.map",
     "runtime-main.js": "/rkmin-fe/static/js/runtime-main.8c83376e.js",
     "runtime-main.js.map": "/rkmin-fe/static/js/runtime-main.8c83376e.js.map",
     "static/css/2.f719b827.chunk.css": "/rkmin-fe/static/css/2.f719b827.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.f719b827.chunk.css",
     "static/js/2.3c6bc5b0.chunk.js",
     "static/css/main.1256f92f.chunk.css",
-    "static/js/main.98964328.chunk.js"
+    "static/js/main.f51261cb.chunk.js"
   ]
 }

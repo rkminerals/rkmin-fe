@@ -63,7 +63,7 @@ function Reports(props) {
     return (
         dataLoading == true ? <span><h2><br/></h2><Spin style={{paddingTop:'40px'}} size="large" /><br/><br/>creating reports ...</span> :
         <Row>
-            <Col span={24} align="center" style={{paddingTop: '20px', paddingLeft: '50px'}}> 
+            <Col span={24} align="center" style={{paddingTop: '20px'}}> 
                 {/* <h3 style={{paddingLeft: '5px'}}>Reports  </h3>
                 <hr/>  */}
                     <Button style={{marginRight: '10px'}} onClick={()=>{setInfoType(1); calMineralInfo();}}>Minerals Info.</Button> 

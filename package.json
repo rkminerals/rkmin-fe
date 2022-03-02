@@ -28,7 +28,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "git add . && git commit -m 'a' && git push",
+    "predeploy": "npm run build && git add . && git commit -m 'a' && git push",
     "deploy": "gh-pages -d build",
     "deploy1": "git fetch origin gh-pages && git checkout gh-pages && git pull",
     "deploy2": "mkdir rkmin-fe && cp -R ~/Desktop/rkmin-fe/static ~/Desktop/rkmin-fe/rkmin-fe/static && git add . && git commit -m 'a' && git push && git checkout master"

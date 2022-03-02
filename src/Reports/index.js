@@ -63,17 +63,15 @@ function Reports(props) {
     return (
         dataLoading == true ? <span><h2><br/></h2><Spin style={{paddingTop:'40px'}} size="large" /><br/><br/>creating reports ...</span> :
         <Row>
-            <Col span={24} align="left" style={{paddingTop: '20px', paddingLeft: '50px'}}> 
-                <h3 style={{paddingLeft: '5px'}}>Reports  </h3>
-                <br/> 
+            <Col span={24} align="center" style={{paddingTop: '20px', paddingLeft: '50px'}}> 
+                {/* <h3 style={{paddingLeft: '5px'}}>Reports  </h3>
+                <hr/>  */}
                     <Button style={{marginRight: '10px'}} onClick={()=>{setInfoType(1); calMineralInfo();}}>Minerals Info.</Button> 
-                    <br/>
-                    <br/>
+                     
                          <Button style={{marginRight: '10px'}} onClick={()=>{setInfoType(2); setShowMineralInfo(true);}}>Powder Info.</Button>
-                         <br/> 
-                         <br/> 
+                          
 
-                    <Button id="downloadEntriesButton" onClick={()=>{
+                    <Button type="primary" id="downloadEntriesButton" onClick={()=>{
                         let password = prompt('Password is required to proceed');
                         if(password === 'admin@321') {
                             document.getElementById('iE').style.display = 'inline-block';
@@ -83,7 +81,7 @@ function Reports(props) {
                         } else {
                             alert('Incorrect password');
                         }
-                    }}>Download Entries</Button>
+                    }} style={{marginTop: '10px'}}>Download Entries</Button>
                     
                     <a id="iE" style={{marginRight: '10px', display: 'none'}} href={`${API_BASE}/api/incomingEntryModel/allInReport`}>
                         <Button>Incoming Entries <DownloadOutlined style={{color:'#1890ff'}} size="large"/></Button>

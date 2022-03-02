@@ -36,7 +36,7 @@ function Forms(props) {
             
             // return () => { componentMounted = false }
         }).catch(()=>{
-              alert('something went wrong in fetching the data. Please refresh!');
+              alert('something wrong in fetching the data. Please refresh!');
         })}
     },[])
 

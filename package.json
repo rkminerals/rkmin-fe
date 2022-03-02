@@ -29,7 +29,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "git add . && git commit -m 'a' && git push && gh-pages -d build",
+    "finish-deploy": "git fetch origin gh-pages && git checkout gh-pages && mkdir rkmin-fe && cp -R ~/Desktop/rkmin-fe/static ~/Desktop/rkmin-fe/rkmin-fe/static && git add . && git commit -m 'a' && git push"
   },
   "eslintConfig": {
     "extends": [

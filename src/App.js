@@ -54,7 +54,7 @@ function App() {
                               onMouseOver={(e) => { 
                                 e.target.style.cursor = "none"; 
                               }}
-                              size="large">R. Kk. MINERALS <sub> Stock Register</sub></Button>
+                              size="large">R. K. MINERALS <sub> Stock Register</sub></Button>
                           </Col>
                           <Col span={12} style={{textAlign: "right"}}>
                               {/* <Link to="/reports"><Button type="ghost" style={{color: 'white',  border: '0px'}} size="large"> <LineChartOutlined /> Reports </Button></Link> */}
